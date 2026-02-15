@@ -6,7 +6,9 @@ import SortCss from 'postcss-sort-media-queries';
 
 export default defineConfig(({ command }) => {
   return {
-      base:'/goit-js-hw-10/',
+    base: command === 'serve' ? '/' : '/goit-js-hw-11/',
+    // Load environment variables from project root (one level above root: 'src')
+    envDir: '..',
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
