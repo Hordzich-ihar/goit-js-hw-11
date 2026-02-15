@@ -15,7 +15,7 @@ const submitButton = form.querySelector('button[type="submit"]');
 
 if (!hasApiKey) {
   iziToast.error({
-    message: 'API key is missing. Add VITE_PIXABAY_KEY to .env and restart the dev server.',
+    message: 'API key отсутствует в коде приложения.',
     position: 'topRight',
     backgroundColor: '#f35c5c',
     progressBarColor: '#fff',
@@ -59,8 +59,8 @@ form.addEventListener('submit', event => {
     .catch(error => {
       iziToast.error({
         message:
-          error?.message === 'Pixabay API key is missing. Set VITE_PIXABAY_KEY in your .env file.'
-            ? 'API key is missing. Add VITE_PIXABAY_KEY to .env and restart the dev server.'
+          error?.message === 'Pixabay API key is missing in the app code.'
+            ? 'API key отсутствует в коде приложения.'
             : 'Failed to load images.',
         position: 'topRight',
       });

@@ -137,8 +137,10 @@ body {
 
 .info {
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 12px;
   padding: 8px 10px 10px;
   font-size: 12px;
   color: var(--muted);
@@ -151,7 +153,8 @@ body {
   gap: 4px;
   font-weight: 600;
   color: var(--text);
-  flex: 1 1 25%;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .info-value {
