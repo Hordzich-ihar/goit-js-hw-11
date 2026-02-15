@@ -1,7 +1,7 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-import { getImagesByQuery } from '../js/pixabay-api.js';
+import { getImagesByQuery, hasApiKey } from '../js/pixabay-api.js';
 import {
   createGallery,
   clearGallery,
@@ -11,9 +11,23 @@ import {
 
 const form = document.querySelector('.form');
 const searchInput = document.querySelector('input[name="search-text"]');
+const submitButton = form.querySelector('button[type="submit"]');
+
+if (!hasApiKey) {
+  iziToast.error({
+    message: 'API key is missing. Add VITE_PIXABAY_KEY to .env and restart the dev server.',
+    position: 'topRight',
+    backgroundColor: '#f35c5c',
+    progressBarColor: '#fff',
+  });
+  submitButton.disabled = true;
+  submitButton.textContent = 'Add API key';
+}
 
 form.addEventListener('submit', event => {
   event.preventDefault();
+
+  if (!hasApiKey) return;
 
   const query = searchInput.value.trim();
   if (!query) {

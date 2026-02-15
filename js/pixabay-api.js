@@ -14,6 +14,8 @@ const httpClient = axios.create({
   },
 });
 
+export const hasApiKey = Boolean(API_KEY);
+
 export function getImagesByQuery(query) {
   if (!API_KEY) {
     return Promise.reject(
