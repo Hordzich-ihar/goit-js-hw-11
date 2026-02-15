@@ -4,9 +4,9 @@ import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 import SortCss from 'postcss-sort-media-queries';
 
-export default defineConfig(() => {
+export default defineConfig(({ command }) => {
   return {
-    base: '/',
+    base: command === 'serve' ? '/' : './',
     // Load environment variables from project root (one level above root: 'src')
     envDir: '..',
     define: { global: {} },
