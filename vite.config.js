@@ -4,14 +4,12 @@ import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 import SortCss from 'postcss-sort-media-queries';
 
-export default defineConfig(({ command }) => {
+export default defineConfig(() => {
   return {
-    base: command === 'serve' ? '/' : '/goit-js-hw-11/',
+    base: '/',
     // Load environment variables from project root (one level above root: 'src')
     envDir: '..',
-    define: {
-      [command === 'serve' ? 'global' : '_global']: {},
-    },
+    define: { global: {} },
     root: 'src',
     build: {
       sourcemap: true,
