@@ -4,57 +4,53 @@ import 'loaders.css/loaders.min.css';
 
 import iziToast from 'izitoast';
 
-import { getImagesByQuery } from './js/pixabay-api.js';
-import { createGallery, clearGallery } from './js/render-functions.js';
+import { getImagesByQuery } from './js/pixabay-api';
+import {
+  createGallery,
+  clearGallery,
+  showLoader,
+  hideLoader,
+} from './js/render-functions';
 
-const refs = {
-  form: document.querySelector('#search-form'),
-  loader: document.querySelector('#loader'),
-  imgList: document.querySelector('#gallery'),
-};
+const formEl = document.querySelector('.form');
 
-refs.form.addEventListener('submit', e => {
-  e.preventDefault();
+formEl.addEventListener('submit', event => {
+  event.preventDefault();
 
-  const input = e.target.elements['search-text'].value.trim();
+  const query = event.target.elements['search-text'].value.trim();
 
-  if (!input) {
+  if (!query) {
     iziToast.error({
-      title: 'Error',
       message: 'Please enter a search query!',
       position: 'topRight',
     });
     return;
   }
 
-  refs.loader.classList.remove('is-hidden');
-  refs.imgList.innerHTML = '';
+  clearGallery();
+  showLoader();
 
-  getImagesByQuery(input)
-    .then(res => {
-      if (!res.hits || res.hits.length === 0) {
+  getImagesByQuery(query)
+    .then(data => {
+      if (!data.hits.length) {
         iziToast.error({
-          title: 'Error',
           message:
             'Sorry, there are no images matching your search query. Please try again!',
           position: 'topRight',
         });
         return;
       }
-      createGallery(res.hits);
+
+      createGallery(data.hits);
     })
-    .catch(error => {
+    .catch(() => {
       iziToast.error({
-        title: 'Error',
-        message:
-          'Sorry, there are no images matching your search query. Please try again!',
+        message: 'Something went wrong. Please try again!',
         position: 'topRight',
       });
-      console.error('Fetch error: ', error);
     })
     .finally(() => {
-      refs.loader.classList.add('is-hidden');
+      hideLoader();
+      formEl.reset();
     });
-
-  e.currentTarget.reset();
 });
