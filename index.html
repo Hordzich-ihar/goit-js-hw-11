@@ -2,17 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/goit-js-hw-11/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search images</title>
     <script type="module" crossorigin src="/goit-js-hw-11/index.js"></script>
     <link rel="modulepreload" crossorigin href="/goit-js-hw-11/assets/vendor-Dr9nwXt6.js">
     <link rel="stylesheet" crossorigin href="/goit-js-hw-11/assets/vendor-D-NVw-9R.css">
-    <link rel="stylesheet" crossorigin href="/goit-js-hw-11/assets/index-BsE1dgJB.css">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-11/assets/index-b2fc9wwG.css">
   </head>
   <body>
     <main class="page">
-      <form class="form" id="search-form">
+      <form class="form" autocomplete="off">
         <label class="visually-hidden" for="search-input">Search images</label>
         <input
           id="search-input"
@@ -25,14 +25,15 @@
       </form>
 
       <section class="gallery-section">
-        <div class="loader is-hidden" id="loader" aria-hidden="true">
+        <div class="loader is-hidden" aria-hidden="true">
           <div class="loader-inner ball-pulse">
             <div></div>
             <div></div>
             <div></div>
           </div>
         </div>
-        <ul class="gallery" id="gallery"></ul>
+
+        <ul class="gallery"></ul>
       </section>
     </main>
 
